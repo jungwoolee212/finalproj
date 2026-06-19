@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호안 (Hoan) - 당신의 사진에 어울리는 음악</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>호안 <span>Hoan</span></h1>
+            <p>사진을 업로드하면 그 순간에 어울리는 음악을 추천해드립니다.</p>
+            <button id="settingsBtn" class="icon-btn" title="API 설정"><i class="fas fa-cog"></i></button>
+        </header>
+
+        <main>
+            <div class="upload-section" id="dropZone">
+                <input type="file" id="fileInput" accept="image/*" hidden>
+                <div class="upload-content">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <h2>클릭하거나 사진을 드래그하세요</h2>
+                    <p>PNG, JPG, JPEG 지원</p>
+                </div>
+                <div id="imagePreviewContainer" class="hidden">
+                    <img id="imagePreview" alt="업로드된 이미지 미리보기">
+                    <button id="removeImageBtn" class="icon-btn remove-btn"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+
+            <div class="action-section">
+                <button id="analyzeBtn" class="primary-btn" disabled>
+                    <i class="fas fa-magic"></i> 음악 추천받기
+                </button>
+            </div>
+
+            <div id="loadingIndicator" class="loading-container hidden">
+                <div class="spinner"></div>
+                <p>AI가 사진의 분위기를 분석하고 있습니다...</p>
+            </div>
+
+            <div id="resultsSection" class="results-container hidden">
+                <h3><i class="fas fa-music"></i> 추천 음악</h3>
+                <div id="recommendationsList" class="recommendations-list">
+                    <!-- 추천 결과가 여기에 동적으로 추가됩니다 -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- API Key Settings Modal -->
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>설정</h2>
+                <button id="closeModalBtn" class="icon-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="apiKeyInput">Gemini API 키</label>
+                    <input type="password" id="apiKeyInput" placeholder="AI Studio에서 발급받은 API 키를 입력하세요">
+                    <p class="help-text">API 키는 브라우저에만 안전하게 저장되며 서버로 전송되지 않습니다.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveSettingsBtn" class="primary-btn">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
